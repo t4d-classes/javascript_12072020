@@ -34,13 +34,19 @@ git clone https://github.com/t4d-classes/javascript_12072020.git FOLDER_NAME
 cd FOLDER_NAME
 ```
 
-3. Run the following command to install the NPM packages.
+3. Change into the `js-demo` folder.
+
+```
+cd js-demo
+```
+
+4. Run the following command to install the NPM packages.
 
 ```
 npm install
 ```
 
-4. To start the React application, run the following command.
+5. To start the React application, run the following command.
 
 ```
 npm start
