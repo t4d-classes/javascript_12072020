@@ -1,0 +1,23 @@
+<script>
+
+  const logCreator = function (logMethod) {
+
+    return (
+      function (msg) {
+        logMethod(msg);
+      }
+    );
+
+  };
+
+  const log = logCreator((logEntry) => {
+    console.log('app> ' + logEntry);
+  });
+
+  log('hello!');
+
+
+
+
+
+</script>

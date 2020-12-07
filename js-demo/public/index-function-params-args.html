@@ -1,0 +1,40 @@
+<script>
+
+  // function doIt(a, b, ...c /* rest parameter */) {
+
+  //   console.log(a, b, c);
+
+  // }
+
+  // doIt(...[1, 2, 3, 4, 5]);
+
+  // parameter destructuring
+
+  function printFullName(firstName, lastName, repeatTimes = 1, upperCase = false, makeBold = false) {
+    for (let x = 0; x < repeatTimes; x++) {
+      console.log(firstName + ' ' + lastName);
+    }
+  }
+
+  printFullName('Sri', 'Movva');
+
+  const defaultOptions = { repeatTimes: 1, upperCase = false, makeBold = false };
+
+  function printFullName2(person, options = {}) {
+
+    const actualOptions = { ...defaultOptions, ...options };
+
+    for (let x = 0; x < options.repeatTimes; x++) {
+      console.log(person.firstName + ' ' + person.lastName);
+    }
+  }
+
+  printFullName2({ firstName: 'Sri', lastName: 'Movva' });
+
+  function printFullName3({ firstName, lastName }) {
+    console.log(firstName + ' ' + lastName);
+  }
+
+  printFullName3({ firstName: 'Sri', lastName: 'Movva' });
+
+</script>

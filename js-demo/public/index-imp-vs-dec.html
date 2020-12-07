@@ -1,0 +1,38 @@
+<script>
+
+  const nums = [1, 2, 3, 4, 5];
+
+  // imperative code
+
+  //const doubleNums = [];
+
+  // for (let x = 0; x < nums.length; x++) {
+  //   doubleNums.push(nums[x] * 2);
+  // }
+
+  // nums.forEach((num) => {
+  //   // side-effect, mutate the doubleNums array
+  //   doubleNums.push(num * 2);
+  // });
+
+  const myMap = (transformFn, items) => {
+    const transformedItems = [];
+
+    for (let x = 0; x < items.length; x++) {
+      transformedItems.push(transformFn(items[x], x, items));
+    }
+
+    return transformedItems;
+  };
+
+
+
+  // declarative
+  // map: transform from one array to another array
+  const doubleNums = nums.map((num, index, originalArray) => num * 2);
+
+  console.log(nums);
+  console.log(doubleNums);
+
+
+</script>

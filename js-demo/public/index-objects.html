@@ -1,0 +1,36 @@
+<script>
+
+  const getFullName = function () {
+    return this.firstName + ' ' + this.lastName;
+  };
+
+  const person = {
+    firstName: 'Bob',
+    lastName: 'Smith',
+    age: 32,
+    address: {
+      street: '123 Oak Lane',
+      city: 'Mountain View',
+      state: 'CA'
+    },
+    getFullName: getFullName,
+  };
+
+  const person2 = {
+    firstName: 'Sally',
+    lastName: 'Thompkins',
+    address: person.address,
+    getFullName: getFullName,
+  }
+
+  person2.address.city = 'Sunnyvale';
+
+  console.log(person);
+  console.log(person2);
+  console.log(person.address === person2.address);
+  console.log(person.getFullName());
+  console.log(person2.getFullName());
+
+
+
+</script>
