@@ -1,0 +1,29 @@
+<script>
+
+  const outer = () => {
+
+    let y = 2;
+
+    setTimeout(function setYTo4() {
+      console.log('set y to 4');
+      y = 4;
+    }, 2000);
+
+    return function inner() {
+      console.log('log y');
+      console.log(y);
+    };
+  };
+
+  const inner = outer();
+
+  inner();
+
+  setTimeout(function callInnerAgain() {
+    console.log('log y again');
+    inner();
+  }, 4000);
+
+  // console.dir(inner);
+
+</script>
