@@ -1,0 +1,55 @@
+
+const delay = () => Math.floor(Math.random() * 1000) + 500;
+
+
+// type FulfillmentFn<S> = (data: S) => void;
+
+// type AsyncOp<R> = (resolve: FulfillmentFn<R>, reject: FulfillmentFn<R>) => void;
+
+// class MyPromise<T> {
+
+//   resolveFns: FulfillmentFn<T>[] = [];
+//   rejectFns: FulfillmentFn<T>[] = [];
+
+//   constructor(fn: AsyncOp<T>) {
+//     const resolveFn = (data: T) => {
+//       this.resolveFns.forEach(fn => fn(data));
+//     };
+
+//     const rejectFn = (data: T) => {
+//       this.rejectFns.forEach(fn => fn(data));
+//     };
+
+//     fn(resolveFn, rejectFn);
+//   }
+
+//   then(fn: FulfillmentFn<T>) {
+//     this.resolveFns.push(fn);
+//   }
+
+//   catch(fn: FulfillmentFn<T>) {
+//     this.rejectFns.push(fn);
+//   }
+
+// }
+
+
+const p = new Promise<string>((resolve, reject) => {
+
+  setTimeout(() => {
+    reject('a');
+  }, delay());
+
+});
+
+p.then(result => {
+  console.log(result);
+}).catch(result => {
+  console.log('something went wrong: ', result);
+});
+
+console.log('waiting...');
+
+
+
+

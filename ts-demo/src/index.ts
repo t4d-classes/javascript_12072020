@@ -1,42 +1,26 @@
 
 const delay = () => Math.floor(Math.random() * 1000) + 500;
 
-// setTimeout(() => {
-//     console.log('a');
+const xhr = new XMLHttpRequest();
 
-//     setTimeout(() => {
-//         console.log('b');
+xhr.addEventListener('readystatechange', () => {
 
-//         setTimeout(() => {
-//             console.log('c');
-//         }, delay());
+  if (xhr.readyState === 4 && xhr.status === 200) {
+    console.log(JSON.parse(xhr.responseText));
+  }
 
-//     }, delay());
+});
 
-// }, delay());
+xhr.open('GET', 'http://localhost:3000/api/colors');
+xhr.send();
 
-// Lab Exercise
+// Write some code such that if the following line of code
+// was pasted into your code file, the line of code would
+// work with no changes.
+// Use the XHR code above to make the AJAX call, do not
+// use the built-in fetch API
 
-// run the allDone function, after all three setTimeout callbacks have executed
-
-// Rules
-// 1. You may not use promises
-// 2. All three calls to 'setTimeout' must be done in the same task
-// 3. No additional calls to setTimeout are permitted
-
-function allDone() {
-  console.log('all done');
-}
-
-setTimeout(() => {
-  console.log('a');
-}, delay());
-
-setTimeout(() => {
-  console.log('b');
-}, delay());
-
-setTimeout(() => {
-  console.log('c');
-}, delay());
-
+myFetch('http://localhost:3000/api/colors')
+  .then((colors: any[]) => {
+    console.log(colors);
+  });
