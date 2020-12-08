@@ -1,4 +1,4 @@
-# Welcome to the Front-End Web Development Boot Camp
+# Welcome to Introduction to ES2020 JavaScript
 
 ![DevelopIntelligence Logo](images/developintelligence-logo.jpg "DevelopIntelligence Logo")
 
