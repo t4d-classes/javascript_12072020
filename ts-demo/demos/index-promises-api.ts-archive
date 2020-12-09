@@ -1,0 +1,31 @@
+
+const delay = () => Math.floor(Math.random() * 1000) + 500;
+
+const p1 = new Promise<string>(resolve => setTimeout(() => resolve('a'), delay()));
+const p2 = new Promise<string>(resolve => setTimeout(() => resolve('b'), delay()));
+const p3 = new Promise<string>((resolve, reject) => setTimeout(() => reject('c'), delay()));
+const p4 = new Promise<string>(resolve => setTimeout(() => resolve('d'), delay()));
+const p5 = new Promise<string>(resolve => setTimeout(() => resolve('timeout expired'), 2000));
+
+p1.then(result => console.log(result));
+p2.then(result => console.log(result));
+p3.then(result => console.log(result)).catch(result => console.log('failed: ', result));
+p4.then(result => console.log(result));
+
+// Promise.all([p1, p2, p3, p4]).then(results => {
+//   console.log(results);
+//   console.log('all done');
+// }).catch(result => {
+//   console.log('one failed: ', result);
+// });
+
+// Promise.allSettled([p1, p2, p3, p4]).then(results => {
+//   console.log(results);
+//   console.log('all done');
+// });
+
+Promise.race([Promise.allSettled([p1, p2, p3, p4]), p5])
+  .then(result => console.log(result))
+  .finally(() => {
+    console.log('all done with promises...');
+  });

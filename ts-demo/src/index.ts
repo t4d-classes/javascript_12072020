@@ -1,54 +1,33 @@
 
-const delay = () => Math.floor(Math.random() * 1000) + 500;
 
-type MyFetch = <T>(url: string) => Promise<T>;
+const nums = [1, 2, 3, 4, 5];
 
-type AjaxError = {
-  status: number;
-  message: string;
-}
+const mySymbol = Symbol('this is my cool symbol');
 
-const myFetch: MyFetch = <S>(url: string) => {
-
-  return new Promise<S>((resolve, reject) => {
-    const xhr = new XMLHttpRequest();
-    xhr.addEventListener('readystatechange', () => {
-      try {
-        if (xhr.readyState === 4 && (xhr.status === 0 || xhr.status >= 400)) {
-          reject({
-            status: xhr.status,
-            message: xhr.statusText,
-          });
-        }
-
-        if (xhr.readyState === 4 && xhr.status === 200) {
-          resolve(JSON.parse(xhr.responseText));
-        }
-      } catch (err) {
-        reject({
-          status: 0,
-          message: err,
-        });
-      }
-    });
-    xhr.open('GET', url);
-    xhr.send();
-  });
-
+const randomNums = {
+  _counter: 0,
+  [Symbol.iterator]: function () {
+    this._counter = 0;
+    return {
+      next: () => {
+        this._counter++;
+        return {
+          value: Math.random(),
+          done: this._counter > 9,
+        };
+      },
+    };
+  },
+  [mySymbol]: 'some data',
 };
 
-type Color = {
-  id: number;
-  name: string;
-  hexcode: string;
+// for (let num of nums) {
+//   console.log(num);
+// }
+
+for (let num of randomNums) {
+  console.log(num);
 }
 
-myFetch<Color[]>('http://localhost:8000/api/colors')
-  .then((colors) => {
-    console.log(colors);
-  })
-  .catch(err => {
-    const ajaxError = err as AjaxError;
-    console.log('handled error');
-    console.log(ajaxError.status, ajaxError.message);
-  });
+console.log(randomNums[mySymbol]);
+console.log(mySymbol);

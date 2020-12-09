@@ -1,0 +1,39 @@
+
+
+const firstName = 'Bob';
+
+const lastNameProp = 'lastName';
+
+const person = {
+  // shorthand property
+  // firstName: firstName,
+  firstName,
+
+  // computed property
+  // lastName: 'Smith',
+  [lastNameProp]: 'Smith',
+
+
+  // getter/setter properties
+  _age: 23,
+
+  get age() {
+    console.log('getting age');
+    return this._age;
+  },
+
+  set age(value: number) {
+    console.log('setting age');
+    this._age = value;
+  },
+
+  // shorthand function property
+  // getFullName: function() {
+  getFullName() {
+    return this.firstName + ' ' + this.lastName;
+  }
+
+};
+
+person.age = 23;
+console.log(person.age);

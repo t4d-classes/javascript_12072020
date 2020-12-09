@@ -1,0 +1,52 @@
+
+const delay = () => Math.floor(Math.random() * 1000) + 500;
+
+type Color = {
+  id: number;
+  name: string;
+  hexcode: string;
+};
+
+type NewColor = Omit<Color, 'id'>
+
+const getAllColors = () => {
+  return fetch('http://localhost:3000/api/colors')
+    .then(res => res.json() as Promise<Color[]>);
+};
+
+const appendColor = (color: NewColor) => {
+  return fetch('http://localhost:3000/api/colors', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(color)
+  })
+    .then(res => res.json() as Promise<Color>);
+};
+
+const removeColor = (colorId: number) => {
+  return fetch(
+    'http://localhost:3000/api/colors/' + encodeURIComponent(colorId),
+    { method: 'DELETE' },
+  );
+};
+
+const doColorOps = async () => {
+
+  let colors = await getAllColors();
+  console.log(colors);
+
+  const newColor = await appendColor({ name: 'yellow', hexcode: '00ffff' });
+  console.log(newColor);
+
+  colors = await getAllColors();
+  console.log(colors);
+
+  await removeColor(newColor.id);
+
+  colors = await getAllColors();
+  console.log(colors);
+
+}
+
+doColorOps().then(() => console.log('all done'));
+

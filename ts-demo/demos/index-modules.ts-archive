@@ -1,0 +1,12 @@
+import { delay } from './lib.js';
+
+setTimeout(() => {
+
+  import('./test3.js').then(module => {
+    module.doIt();
+  }).catch(err => {
+    console.log(err);
+  });
+
+}, delay());
+
